@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Clock</title>
 </head>
 <body>
     <div class="clock">
@@ -53,24 +53,25 @@
             background: black;
             position: absolute;
             top: 50%;
-            transform-origin: 100%;
-            transform: rotate(90deg);
-            transition: all 0.5s;
-            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+            transform-origin: 100%; /*ustawia strzałki na centrum zegara*/
+            transform: rotate(90deg); /*zmiana strałki o jakiś stopień (360/60 sekund = 6), czyli o 6 st., start zaczyna się od 90st.*/
+            transition: all 0.5s; /*przejście przy każdej zmienie*/
+            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1); /*ruch strzałki*/
         }
     </style>
 
     <script>
-        const secondHand = document.querySelector('.second-hand');
+        // document.querrySelector zwraca tylko pierwszy pasujący element
+        const secondHand = document.querySelector('.second-hand'); // przypisuje .second-hand z html do secondHand w js
         const minsHand = document.querySelector('.min-hand');
         const hourHand = document.querySelector('.hour-hand');
 
         function setDate(){
-           const now = new Date();
+           const now = new Date(); // ustawia rzeczywistą datę jaką stałą
 
-           const seconds = now.getSeconds();
-           const secondsDegrees = ((seconds / 60) * 360) + 90;
-           secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+           const seconds = now.getSeconds(); // uzyska sekundy
+           const secondsDegrees = ((seconds / 60) * 360) + 90; // oblicza odpowiednie miejsce dla strzałki
+           secondHand.style.transform = `rotate(${secondsDegrees}deg)`; // ustawia sekundną strzałkę w odpowiednim miejscu
 
            const minutes = now.getMinutes();
            const minutesDegrees = ((minutes / 60) * 360) + 90;
@@ -83,7 +84,7 @@
            console.log(seconds);
         }
 
-        setInterval(setDate, 1000);
+        setInterval(setDate, 1000); // ustawia interwal co 1 sekundę
     </script>
 </body>
-</html>
+</html> 
